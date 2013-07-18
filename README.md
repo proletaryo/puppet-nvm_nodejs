@@ -1,6 +1,6 @@
 # puppet-nvm_nodejs
 
-Localized installation of multiple versions of nodejs via NVMo
+Localized installation of multiple versions of nodejs via [NVM](https://github.com/creationix/nvm).
 
 NOTE: **This is an experimental module.**
 
