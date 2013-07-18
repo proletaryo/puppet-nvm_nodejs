@@ -8,7 +8,7 @@ Tested to work on 64-bit:
   * CentOS 6.x
 
 ## Parameters
-  * `user`    : target user to install
+  * `user`    : target user to install node into
   * `version` : must be the full version (format: x.x.x)
 
 ## Usage
