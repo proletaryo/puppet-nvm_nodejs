@@ -2,9 +2,8 @@
 
 Localized installation of multiple versions of nodejs via [NVM](https://github.com/creationix/nvm).
 
-NOTE: **This is an experimental module.**
-
 Tested to work on 64-bit:
+  * AWS Linux
   * CentOS 6.x
 
 ## Parameters
@@ -24,4 +23,7 @@ The path of the node executable is stored in `$nvm_nodejs::NODE_EXEC`.
 
 ## Dependencies
 
-none
+This module relies on following packages (install it beforehand, either manually or via puppet):
+  * git
+  * curl
+  * make
