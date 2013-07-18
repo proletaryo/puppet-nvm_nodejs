@@ -14,9 +14,8 @@ class nvm_nodejs (
     logoutput => on_failure,
   }
 
-  # TODO:
-  # can only support full version numbers (x.x.x), otherwise node path will be wrong
-  # need to to enforce it somehow
+  # NOTE: support full version numbers (x.x.x) only, otherwise node path will be wrong
+  validate_re($version, '^\d+\.\d+\.\d+$', 'Specify a valid nodejs version, format: x.x.x (e.g. 0.8.10)')
 
   if ! defined(User[$user]) {
     # create the user
