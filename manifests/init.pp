@@ -28,8 +28,10 @@ class nvm_nodejs (
     }
   }
 
-  # node executable
-  $NODE_EXEC = "/home/${user}/.nvm/v${version}/bin/node"
+  # node path and executable
+  $NODE_PATH  = "/home/${user}/.nvm/v${version}/bin"
+  $NODE_EXEC  = "${NODE_PATH}/node"
+  $NPM_EXEC   = "${NODE_PATH}/npm"
 
   # dependency check
   exec { 'check-needed-packages':
@@ -45,7 +47,7 @@ class nvm_nodejs (
     cwd         => "/home/${user}/",
     user        => $user,
     creates     => "/home/${user}/.nvm/nvm.sh",
-    onlyif      => [ 'which git', 'which curl', 'which make' ],
+    # onlyif      => [ 'which git', 'which curl', 'which make' ],
     environment => [ "HOME=/home/${user}" ],
     refreshonly => true,
   }
@@ -60,12 +62,21 @@ class nvm_nodejs (
     refreshonly => true,
   }
 
+  # sanity check
+  exec { 'nodejs-check':
+    command     => "${NODE_EXEC} -v",
+    user        => $user,
+    environment => [ "HOME=/home/${user}" ],
+    refreshonly => true,
+  }
+
   # print path
   notify { 'node-exec':
     message => "nvm_nodejs, node executable is ${NODE_EXEC}",
   }
 
   # order of things
-  Exec['check-needed-packages']~>Exec['nvm-install-script']~>Exec['nvm-install-node']~>Notify['node-exec']
+  Exec['check-needed-packages']~>Exec['nvm-install-script']
+    ~>Exec['nvm-install-node']~>Exec['nodejs-check']~>Notify['node-exec']
 }
 
