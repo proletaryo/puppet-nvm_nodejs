@@ -10,14 +10,21 @@ Tested to work on 64-bit:
 ## Parameters
   * `user`    : target user to install node into
   * `version` : must be the full version (format: x.x.x)
+  * `home`    : set the target home dir. defaults to `/home/${user}` if skipped
 
 ## Usage
 
 Basic:
 
     class { 'nvm_nodejs':
-      user    => 'prod',
+      user    => 'prod',    # this will create /home/prod automatically
       version => '0.8.22',
+    }
+
+    class { 'nvm_nodejs':
+      user    => 'jenkins',
+      version => '0.8.22',
+      home    => '/var/tmp/jenkins',  # explicit home location
     }
 
 ## Paths and executables
