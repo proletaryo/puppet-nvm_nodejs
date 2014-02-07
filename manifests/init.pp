@@ -78,6 +78,6 @@ class nvm_nodejs (
 
   # order of things
   Exec['check-needed-packages']~>Exec['nvm-install-script']
-    ~>Exec['nvm-install-node']~>Exec['nodejs-check']~>Notify['node-exec']
+    ~>Exec['nvm-install-node']~>Exec['nodejs-check'] # ~>Notify['node-exec']
 }
 
