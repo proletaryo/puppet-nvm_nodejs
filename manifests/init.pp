@@ -44,7 +44,7 @@ class nvm_nodejs (
 
   # install via script
   exec { 'nvm-install-script':
-    command     => 'curl https://raw.github.com/creationix/nvm/master/install.sh | sh',
+    command     => 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh',
     cwd         => $home,
     user        => $user,
     creates     => "${home}/.nvm/nvm.sh",
