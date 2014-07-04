@@ -59,7 +59,7 @@ class nvm_nodejs (
     user        => $user,
     unless      => "test -e ${home}/.nvm/v${version}/bin/node",
     provider    => shell,
-    environment => [ "HOME=/${home}" ],
+    environment => [ "HOME=/${home}", "NVM_DIR=${home}/.nvm" ],
     refreshonly => true,
   }
 
