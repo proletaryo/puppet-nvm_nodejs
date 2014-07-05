@@ -23,7 +23,6 @@ class nvm_nodejs (
     # create the user
     user { $user:
       ensure     => present,
-      shell      => '/bin/bash',
       home       => $home,
       managehome => true,
     }

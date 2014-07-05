@@ -6,6 +6,7 @@ Tested to work on 64-bit:
 
   * AWS Linux
   * CentOS 6.x
+  * Ubuntu 12.04
 
 ## Parameters
   * `user`    : target user to install node into
