@@ -9,9 +9,10 @@ Tested to work on 64-bit:
   * Ubuntu 12.04
 
 ## Parameters
-  * `user`    : target user to install node into
-  * `version` : must be the full version (format: x.x.x)
-  * `home`    : set the target home dir. defaults to `/home/${user}` if skipped
+  * `user`        : target user to install node into
+  * `version`     : must be the full version (format: x.x.x)
+  * `manage_user` : specify if user resource should be created or not, defaults to false (format: boolean)
+  * `home`        : set the target home dir. defaults to `/home/${user}` if skipped
 
 ## Usage
 
@@ -19,6 +20,7 @@ Basic:
 
     class { 'nvm_nodejs':
       user    => 'prod',    # this will create /home/prod automatically
+      manage_user => true,
       version => '0.8.22',
     }
 
@@ -38,8 +40,7 @@ Once the class was successfully declared, access these variables:
 
 ## Dependencies
 
-This module relies on following packages (install it beforehand, either manually or via puppet):
-
+This module relies on following packages to be installed via puppet:
   * git
   * curl
   * make
