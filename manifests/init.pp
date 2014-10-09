@@ -56,21 +56,4 @@ class nvm_nodejs (
     environment => [ "HOME=${home}", "NVM_DIR=${home}/.nvm" ],
     require     => Exec['nvm-install-script']
   }
-
-  # sanity check
-  exec { 'nodejs-check':
-    command     => "${NODE_EXEC} -v",
-    user        => $user,
-    environment => [ "HOME=${home}" ],
-    refreshonly => true,
-  }
-
-  # # print path
-  # notify { 'node-exec':
-  #   message => "nvm_nodejs, node executable is ${NODE_EXEC}",
-  # }
-
-  # order of things
-  Exec['nvm-install-node']~>Exec['nodejs-check'] # ~>Notify['node-exec']
 }
-
