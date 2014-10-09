@@ -34,23 +34,17 @@ class nvm_nodejs (
   $NODE_EXEC  = "${NODE_PATH}/node"
   $NPM_EXEC   = "${NODE_PATH}/npm"
 
-  # dependency check
-  exec { 'check-needed-packages':
-    command     => 'which git && which curl && which make',
-    user        => $user,
-    environment => [ "HOME=${home}" ],
-    require     => User[$user],
-  }
-
   # install via script
   exec { 'nvm-install-script':
     command     => 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh',
     cwd         => $home,
     user        => $user,
     creates     => "${home}/.nvm/nvm.sh",
-    # onlyif      => [ 'which git', 'which curl', 'which make' ],
     environment => [ "HOME=${home}" ],
-    refreshonly => true,
+    require     => [
+        User[$user],
+        Package['git','curl','make']
+      ],
   }
 
   exec { 'nvm-install-node':
@@ -77,7 +71,7 @@ class nvm_nodejs (
   # }
 
   # order of things
-  Exec['check-needed-packages']~>Exec['nvm-install-script']
+  Exec['nvm-install-script']
     ~>Exec['nvm-install-node']~>Exec['nodejs-check'] # ~>Notify['node-exec']
 }
 
