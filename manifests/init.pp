@@ -54,7 +54,7 @@ class nvm_nodejs (
     unless      => "test -e ${home}/.nvm/v${version}/bin/node",
     provider    => shell,
     environment => [ "HOME=${home}", "NVM_DIR=${home}/.nvm" ],
-    refreshonly => true,
+    require     => Exec['nvm-install-script']
   }
 
   # sanity check
@@ -71,7 +71,6 @@ class nvm_nodejs (
   # }
 
   # order of things
-  Exec['nvm-install-script']
-    ~>Exec['nvm-install-node']~>Exec['nodejs-check'] # ~>Notify['node-exec']
+  Exec['nvm-install-node']~>Exec['nodejs-check'] # ~>Notify['node-exec']
 }
 
