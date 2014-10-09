@@ -11,7 +11,8 @@ Tested to work on 64-bit:
 ## Parameters
   * `user`        : target user to install node into
   * `version`     : must be the full version (format: x.x.x)
-  * `manage_user` : specify if user resource should be created or not, defaults to false (format: boolean)
+  * `manage_user` : specify if the user resource should be created or not,
+    defaults to false (format: boolean)
   * `home`        : set the target home dir. defaults to `/home/${user}` if skipped
 
 ## Usage
