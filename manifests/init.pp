@@ -1,7 +1,8 @@
 class nvm_nodejs (
   $user,
   $version,
-  $home = "/home/${user}",
+  $manage_user = false,
+  $home = "/home/${user}"
 ) {
 
   Exec {
@@ -19,7 +20,7 @@ class nvm_nodejs (
   validate_re($version, '^\d+\.\d+\.\d+$',
     'Please specify a valid nodejs version, format: x.x.x (e.g. 0.8.10)')
 
-  if ! defined(User[$user]) {
+  if $manage_user {
     # create the user
     user { $user:
       ensure     => present,
