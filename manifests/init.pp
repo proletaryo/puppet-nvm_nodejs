@@ -26,7 +26,7 @@ class nvm_nodejs (
       ensure     => present,
       home       => $home,
       managehome => true,
-    }
+    } ~> Exec[nvm-install-script]
   }
 
   # node path and executable
@@ -41,10 +41,7 @@ class nvm_nodejs (
     user        => $user,
     creates     => "${home}/.nvm/nvm.sh",
     environment => [ "HOME=${home}" ],
-    require     => [
-        User[$user],
-        Package['git','curl','make']
-      ],
+    require     => Package['git','curl','make'],
   }
 
   exec { 'nvm-install-node':
