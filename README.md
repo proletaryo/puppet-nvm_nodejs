@@ -20,9 +20,9 @@ Tested to work on 64-bit:
 Basic:
 
     class { 'nvm_nodejs':
-      user    => 'prod',    # this will create /home/prod automatically
+      user        => 'prod',    # this will create /home/prod automatically
       manage_user => true,
-      version => '0.8.22',
+      version     => '0.8.22',
     }
 
     class { 'nvm_nodejs':
