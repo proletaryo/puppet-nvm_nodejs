@@ -18,18 +18,21 @@ Tested to work on 64-bit:
 ## Usage
 
 Basic:
-
+```puppet
     class { 'nvm_nodejs':
       user        => 'prod',    # this will create /home/prod automatically
       manage_user => true,
       version     => '0.8.22',
     }
+ ```
 
+```puppet
     class { 'nvm_nodejs':
       user    => 'jenkins',
       version => '0.8.22',
       home    => '/var/tmp/jenkins',  # explicit home location
     }
+ ```
 
 ## Paths and executables
 
