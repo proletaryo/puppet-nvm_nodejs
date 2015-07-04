@@ -1,3 +1,5 @@
+# class nvm_nodejs
+#  - installs specified version of nodejs in home directory
 class nvm_nodejs (
   $user,
   $version,
@@ -7,11 +9,11 @@ class nvm_nodejs (
 
   Exec {
     path => [
-       '/usr/local/bin',
-       '/usr/bin',
-       '/usr/sbin',
-       '/bin',
-       '/sbin',
+      '/usr/local/bin',
+      '/usr/bin',
+      '/usr/sbin',
+      '/bin',
+      '/sbin',
     ],
     logoutput => on_failure,
   }
